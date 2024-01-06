@@ -1,9 +1,8 @@
 # Install Nginx
 dnf install nginx -y
 
-# Start & Enable Nginx service
-systemctl enable nginx
-systemctl start nginx
+# Copy expense.conf file to /etc/nginx/default.d/expense.conf
+cp expense.conf /etc/nginx/default.d/expense.conf
 
 # Remove the default content of nginx web server
 rm -rf /usr/share/nginx/html/*
@@ -15,5 +14,6 @@ curl -o /tmp/frontend.zip https://expense-artifacts.s3.amazonaws.com/frontend.zi
 cd /usr/share/nginx/html
 unzip /tmp/frontend.zip
 
-# Restart Nginx Service to load the changes of the configuration.
+# Restart and enable Nginx Service to load the changes of the configuration.
+systemctl enable nginx
 systemctl restart nginx
